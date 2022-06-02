@@ -3,11 +3,11 @@
 }
 
 .title {
-    font-size:large
+    font-size:large;
 }
 
 .shortcut {
-    font-size:xx-small
+    font-size:xx-small;
 }
 
 .right {
@@ -21,7 +21,8 @@
 }
 
 .font-button {
-    height:33px;
+    margin: 2px; 
+    height:32px;
     width:70px;
 }
 
