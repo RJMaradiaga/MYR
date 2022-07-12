@@ -41,7 +41,7 @@ export const Guided = ({ editor, user, usersettings, userActions, scene, editorA
                 scene.settings.viewOnly
                     ?
                     <div id="scene" className="col-12">
-                        <View objects={editor.objects} sceneConfig={scene} assets={editor.assets} />
+                        <View objects={editor.objects} sceneConfig={scene} assets={editor.assets} settings={usersettings}/>
                     </div>
                     :
                     <>
@@ -52,7 +52,7 @@ export const Guided = ({ editor, user, usersettings, userActions, scene, editorA
                             </div>
                         </div>
                         <div id="scene" className="col-12 col-md-8">
-                            <View objects={editor.objects} sceneConfig={scene} assets={editor.assets} />
+                            <View objects={editor.objects} sceneConfig={scene} assets={editor.assets} settings={usersettings}/>
                         </div>
                     </>
             }

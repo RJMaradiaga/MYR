@@ -46,7 +46,7 @@ export const Ide = ({ editor, editorActions, user, usersettings, userActions, au
                 scene.settings.viewOnly
                     ?
                     <div id="scene" className="col-12" >
-                        <View objects={editor.objects} sceneConfig={scene} assets={editor.assets} />
+                        <View objects={editor.objects} sceneConfig={scene} assets={editor.assets} settings={usersettings}/>
                     </div>
                     :
                     <>
@@ -54,7 +54,7 @@ export const Ide = ({ editor, editorActions, user, usersettings, userActions, au
                             <Editor refresh={editorActions.refresh} render={editorActions.render} text={editor.text} user={user} settings={usersettings} savedText={editor.savedText} userActions={userActions} />
                         </div>
                         <div id="scene" className="col-12 col-md-8" >
-                            <View objects={editor.objects} sceneConfig={scene} assets={editor.assets} />
+                            <View objects={editor.objects} sceneConfig={scene} assets={editor.assets} settings={usersettings}/>
                         </div>
                     </>
             }

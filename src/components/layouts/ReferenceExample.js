@@ -14,7 +14,7 @@ import "../../css/ReferencePage.css";
  * @param {object} param0 List of props that will be use in components
  * @returns {HTMLElement} Layout for example scene page
  */
-export const ReferenceExample = ({ editor, user, scene, referenceExample, referenceExampleActions, editorActions, authActions, projectActions, projects, courseActions, courses, match, sceneActions, collectionActions, collections }) => (
+export const ReferenceExample = ({ editor, user, scene, usersettings, referenceExample, referenceExampleActions, editorActions, authActions, projectActions, projects, courseActions, courses, match, sceneActions, collectionActions, collections }) => (
     <div className="App">
         <Header
             logging={authActions}
@@ -41,7 +41,7 @@ export const ReferenceExample = ({ editor, user, scene, referenceExample, refere
                 scene.settings.viewOnly
                     ?
                     <div id="scene" className="col-12" >
-                        <View objects={editor.objects} sceneConfig={scene} assets={editor.assets} />
+                        <View objects={editor.objects} sceneConfig={scene} assets={editor.assets} settings={usersettings}/>
                     </div>
                     :
                     <>
@@ -52,7 +52,7 @@ export const ReferenceExample = ({ editor, user, scene, referenceExample, refere
                             </div>
                         </div>
                         <div id="scene" className="col-12 col-md-8" >
-                            <View objects={editor.objects} sceneConfig={scene} assets={editor.assets} />
+                            <View objects={editor.objects} sceneConfig={scene} assets={editor.assets} settings={usersettings}/>
                         </div>
                     </>
             }
