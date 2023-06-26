@@ -227,6 +227,7 @@ class Header extends Component {
         this.props.projectActions.asyncUserProj(this.props.user.uid);
         this.props.collectionActions.asyncCollections(this.props.user.uid);
         this.props.userActions.asyncUserSettings(this.props.user.uid);
+        this.props.userActions.asyncUserCourses(this.props.user.uid);
 
         this.setRefreshTime(googleAuth.tokenObj.expires_at);
 

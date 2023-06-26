@@ -128,6 +128,50 @@ export function fetchLesson(json) {
 }
 
 /**
+ * Saves user lesson data to MongoDB
+ * 
+ * @param {*} uid The id of the logged in user 
+ * @param {*} scene JSON data of the lesson data to be saved
+ * @param {*} sceneID sceneId to be updated, if undefined, creates a new scene
+ * 
+ * @returns {*} The ID of the saved scene
+ */
+export async function lessonSave(uid, scene, sceneID=undefined){
+    let id = undefined;
+    let url = `${courseRef}`;
+    let method = "POST";
+    const headers = {
+        "Content-Type": "application/json",
+        "x-access-token": uid
+    };
+
+    if(sceneID !== undefined){
+        method = "PUT";
+        url = `${courseRef}/saveId/${sceneID}`;
+    }
+    let resp = await fetch(url, {method: method, body: JSON.stringify(scene), headers: headers});
+    
+    if(resp.status === 401){
+        method = "POST";
+        resp = await fetch(courseRef, {method: method, body: JSON.stringify(scene), headers: headers});
+    }
+
+    if(resp.status !== 201 && resp.status !== 200){
+        console.error("Could not save lesson, are you sure you're logged in?");
+        return false;
+    }
+    let json = await resp.json();
+    id = json._id;
+
+    if(id === ""){
+        console.error("Error receiving lesson save id from server");
+        return false;
+    }
+
+    return id;
+}
+
+/**
  * Sends signal to the reducer to load a new lesson supplied by parameter
  * 
  * @param {object} lesson Lesson data
@@ -148,6 +192,10 @@ export function nextLesson(currentIndex, next) {
     return (dispatch) => {
         dispatch(setCurrentIndex(currentIndex + 1));
         dispatch(fetchLesson(next));
+        //dispatch(lessonSave());
+
+        // eslint-disable-next-line
+        console.log("Before lessonSave");
     };
 }
 
@@ -182,6 +230,7 @@ export default {
     previousLesson,
     fetchCourse,
     setCurrentIndex,
+    lessonSave,
     loadLesson,
     fetchLesson,
     loadCourse
