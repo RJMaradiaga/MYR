@@ -126,9 +126,9 @@ class CourseSelectModal extends Component {
                         </ButtonBase >
                         <h3 className="col-12 p-0 mb-3 border-bottom">Available Courses</h3>
                         <div className="row" id="courses">
-                            { // Sort the courses in alphabetical order
+                            { // Sort the courses in the ascending order of index values
                                 courses.sort(function (a, b) {
-                                    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+                                    return a.index < b.index ? -1 : a.index > b.index ? 1 : 0;
                                 }).map(course => {
                                     return this.helper(course);
                                 })
